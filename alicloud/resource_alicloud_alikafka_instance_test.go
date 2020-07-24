@@ -352,6 +352,11 @@ func resourceAlikafkaInstanceConfigDependence(name string) string {
 		data "alicloud_vswitches" "default" {
 		  is_default = true
 		}
+
+		resource "alicloud_security_group" "default" {
+		  name   = var.name
+		  vpc_id = alicloud_vswitches.default.vpc_id
+		}
 		`, name)
 }
 
